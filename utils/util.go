@@ -8,6 +8,14 @@ import (
 	"strings"
 )
 
+func AbsoluteDiff(x, y int) int {
+	if x > y {
+		return x - y
+	} else {
+		return y - x
+	}
+}
+
 func ReadFileByLine(path string) (error, [][]string) {
 	file, err := os.Open(path)
 	if err != nil {

@@ -13,18 +13,10 @@ func FindDistance(listOne, listTwo []int) int {
 	slices.Sort(listTwo)
 	totalDistance := 0
 	for i, num := range listOne {
-		dist := AbsoluteDiff(num, listTwo[i])
+		dist := utils.AbsoluteDiff(num, listTwo[i])
 		totalDistance += dist
 	}
 	return totalDistance
-}
-
-func AbsoluteDiff(x, y int) int {
-	if x > y {
-		return x - y
-	} else {
-		return y - x
-	}
 }
 
 func FindOccurences(x int, list []int) int {
