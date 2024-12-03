@@ -1,4 +1,4 @@
-package main
+package utils
 
 import (
 	"bufio"
@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func readFileByLine(path string) (error, [][]string) {
+func ReadFileByLine(path string) (error, [][]string) {
 	file, err := os.Open(path)
 	if err != nil {
 		log.Fatal(err)
@@ -18,14 +18,14 @@ func readFileByLine(path string) (error, [][]string) {
 	scanner := bufio.NewScanner(file)
 	var lines [][]string
 	for scanner.Scan() {
-		line := strings.Split(scanner.Text(), "")
-		newLine := filterSlice(line, isNotBlank)
+		line := strings.Split(scanner.Text(), " ")
+		newLine := FilterSlice(line, IsNotBlank)
 		lines = append(lines, newLine)
 	}
 	return nil, lines
 }
 
-func filterSlice(s []string, callback func(string) bool) []string {
+func FilterSlice(s []string, callback func(string) bool) []string {
 	slice := []string{}
 	for _, str := range s {
 		if callback(str) {
@@ -36,8 +36,8 @@ func filterSlice(s []string, callback func(string) bool) []string {
 	return slice
 }
 
-func isNotBlank(str string) bool {
-	if str == " " {
+func IsNotBlank(str string) bool {
+	if strings.Trim(str, " ") == "" {
 		return false
 	}
 	return true

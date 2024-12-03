@@ -1,4 +1,4 @@
-package main
+package utils
 
 import (
 	"reflect"
@@ -7,8 +7,8 @@ import (
 
 func TestReadFileByLine(t *testing.T) {
 	path := "./sample.txt"
-	expected := [][]string{{"3", "4"}, {"4", "3"}, {"2", "5"}, {"1", "3"}, {"3", "9"}, {"3", "3"}}
-	_, actual := readFileByLine(path)
+	expected := [][]string{{"33", "44"}, {"44", "33"}, {"22", "55"}, {"11", "33"}, {"33", "99"}, {"33", "33"}}
+	_, actual := ReadFileByLine(path)
 
 	if !reflect.DeepEqual(actual, expected) {
 		t.Errorf("got %v, wanted %v", actual, expected)
@@ -16,11 +16,19 @@ func TestReadFileByLine(t *testing.T) {
 }
 
 func TestFilterSlice(t *testing.T) {
-	slice := []string{"1", " ", "o", " "}
-	expected := []string{"1", "o"}
-	actual := filterSlice(slice, isNotBlank)
+	slice := []string{"1", " ", "o", " ", "     ", "  ", "3343"}
+	actual := FilterSlice(slice, IsNotBlank)
+	expected := []string{"1", "o", "3343"}
 
 	if !reflect.DeepEqual(actual, expected) {
 		t.Errorf("got %v, wanted %v", actual, expected)
+	}
+
+	sliceTwo := []string{" ", "", "      "}
+	actualTwo := FilterSlice(sliceTwo, IsNotBlank)
+	expectedTwo := []string{}
+
+	if !reflect.DeepEqual(actualTwo, expectedTwo) {
+		t.Errorf("got %v, wanted %v", actualTwo, expectedTwo)
 	}
 }

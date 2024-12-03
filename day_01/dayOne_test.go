@@ -1,4 +1,4 @@
-package main
+package day01
 
 import (
 	"reflect"
@@ -9,7 +9,7 @@ func TestFindDistance(t *testing.T) {
 	listOne := []int{3, 4, 2, 1, 3, 3}
 	listTwo := []int{4, 3, 5, 3, 9, 3}
 	expectedDistance := 11
-	actualDistance := findDistance(listOne, listTwo)
+	actualDistance := FindDistance(listOne, listTwo)
 
 	if expectedDistance != actualDistance {
 		t.Errorf("got %d, expected %d", actualDistance, expectedDistance)
@@ -21,9 +21,19 @@ func TestMakeTwoLists(t *testing.T) {
 	listOne := []int{3, 4, 2, 1, 3, 3}
 	listTwo := []int{4, 3, 5, 3, 9, 3}
 
-	actualOne, actualTwo := makeTwoLists(input)
+	actualOne, actualTwo := MakeTwoLists(input)
 
 	if !reflect.DeepEqual(actualOne, listOne) || !reflect.DeepEqual(actualTwo, listTwo) {
 		t.Errorf("got: %v and %v, wanted %v and %v", actualOne, actualTwo, listOne, listTwo)
+	}
+}
+
+func TestSolve(t *testing.T) {
+	file := "./sample.txt"
+	expected := 11
+	actual := Solve(file)
+
+	if expected != actual {
+		t.Errorf("got %d, expected %d", actual, expected)
 	}
 }
