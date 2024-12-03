@@ -7,5 +7,5 @@ import (
 )
 
 func main() {
-	fmt.Println(dayOne.Solve("./day_01/input.txt"))
+	fmt.Println(dayOne.SolvePartTwo("./day_01/input.txt"))
 }

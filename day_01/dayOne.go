@@ -27,6 +27,30 @@ func AbsoluteDiff(x, y int) int {
 	}
 }
 
+func FindOccurences(x int, list []int) int {
+	acc := 0
+	for _, num := range list {
+		if num == x {
+			acc++
+		}
+	}
+	return acc
+}
+
+func SolvePartTwo(path string) int {
+	err, input := utils.ReadFileByLine(path)
+	if err != nil {
+		log.Fatal(err)
+	}
+	listOne, listTwo := MakeTwoLists(input)
+	acc := 0
+	for _, num := range listOne {
+		occur := FindOccurences(num, listTwo)
+		acc += num * occur
+	}
+	return acc
+}
+
 func MakeTwoLists(input [][]string) ([]int, []int) {
 	var listOne []int
 	var listTwo []int
@@ -40,7 +64,7 @@ func MakeTwoLists(input [][]string) ([]int, []int) {
 	return listOne, listTwo
 }
 
-func Solve(path string) int {
+func SolvePartOne(path string) int {
 	err, input := utils.ReadFileByLine(path)
 	if err != nil {
 		log.Fatal(err)

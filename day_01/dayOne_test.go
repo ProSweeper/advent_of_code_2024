@@ -28,10 +28,20 @@ func TestMakeTwoLists(t *testing.T) {
 	}
 }
 
-func TestSolve(t *testing.T) {
+func TestSolveOne(t *testing.T) {
 	file := "./sample.txt"
 	expected := 11
-	actual := Solve(file)
+	actual := SolvePartOne(file)
+
+	if expected != actual {
+		t.Errorf("got %d, expected %d", actual, expected)
+	}
+}
+
+func TestSolveTwo(t *testing.T) {
+	file := "./sample.txt"
+	expected := 31
+	actual := SolvePartTwo(file)
 
 	if expected != actual {
 		t.Errorf("got %d, expected %d", actual, expected)
