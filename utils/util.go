@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"log"
 	"os"
+	"strconv"
 	"strings"
 )
 
@@ -20,7 +21,9 @@ func ReadFileByLine(path string) (error, [][]string) {
 	for scanner.Scan() {
 		line := strings.Split(scanner.Text(), " ")
 		newLine := FilterSlice(line, IsNotBlank)
-		lines = append(lines, newLine)
+		if len(newLine) > 0 {
+			lines = append(lines, newLine)
+		}
 	}
 	return nil, lines
 }
@@ -34,6 +37,17 @@ func FilterSlice(s []string, callback func(string) bool) []string {
 	}
 
 	return slice
+}
+
+func StringSliceToIntSlice(strSlice []string) []int {
+	intSlice := []int{}
+	for _, str := range strSlice {
+		num, err := strconv.Atoi(str)
+		if err == nil {
+			intSlice = append(intSlice, num)
+		}
+	}
+	return intSlice
 }
 
 func IsNotBlank(str string) bool {

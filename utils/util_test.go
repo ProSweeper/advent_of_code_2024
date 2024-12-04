@@ -32,3 +32,13 @@ func TestFilterSlice(t *testing.T) {
 		t.Errorf("got %v, wanted %v", actualTwo, expectedTwo)
 	}
 }
+
+func TestStringSliceToIntSlice(t *testing.T) {
+	strSlice := []string{"1", "234", "32", "555555", "av"}
+	want := []int{1, 234, 32, 555555}
+	got := StringSliceToIntSlice(strSlice)
+
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("got %v want %v", got, want)
+	}
+}

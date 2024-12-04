@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 
-	dayOne "github.com/prosweeper/advent_of_code_2024/day_01"
+	dayTwo "github.com/prosweeper/advent_of_code_2024/day_02"
 )
 
 func main() {
-	fmt.Println(dayOne.SolvePartTwo("./day_01/input.txt"))
+	fmt.Println(dayTwo.SolvePartOne("./day_02/input.txt"))
 }
